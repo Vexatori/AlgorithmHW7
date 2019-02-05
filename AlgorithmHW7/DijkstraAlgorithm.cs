@@ -48,8 +48,8 @@ namespace AlgorithmHW7
 
                 do
                 {
-                    minIndex = 1000;
-                    min = 1000;
+                    minIndex = Int32.MaxValue;
+                    min = Int32.MaxValue;
                     for ( int i = 0; i < adjMatrix.Size; i++ )
                     {
                         if ( ( vertexs[ i ] == 1 ) && ( minDist[ i ] < min ) ) 
@@ -59,7 +59,7 @@ namespace AlgorithmHW7
                         }
                     }
 
-                    if ( minIndex == 1000 )
+                    if ( minIndex == Int32.MaxValue)
                     {
                         break;
                     }
@@ -68,7 +68,8 @@ namespace AlgorithmHW7
                     {
                         for ( int i = 0; i < adjMatrix.Size; i++ )
                         {
-                            if ( adjMatrix.Matrix[ minIndex * adjMatrix.Size + i ] < 1000 )
+                            if ( adjMatrix.Matrix[ minIndex * adjMatrix.Size + i ] < 1000 ) //<- сравниваемое число мб и другое, всё зависит от того, какое число находится в матрице смежности на местах,
+                                                                                            //   где связи между вершинами нет
                             {
                                 int temp = min + adjMatrix.Matrix[ minIndex * adjMatrix.Size + i ];
                                 if ( temp < minDist[ i ] )
@@ -80,7 +81,7 @@ namespace AlgorithmHW7
 
                         vertexs[ minIndex ] = 0;
                     }
-                } while ( minIndex < 1000 );
+                } while ( minIndex < Int32.MaxValue);
             }
             else
             {
